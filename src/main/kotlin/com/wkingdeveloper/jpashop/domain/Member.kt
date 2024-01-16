@@ -10,7 +10,7 @@ class Member(
     val id: Long = 0,
     val name: String,
     @Embedded
-    var address: Address
+    val address: Address = Address()
 ) {
 
     @OneToMany(mappedBy = "member")
