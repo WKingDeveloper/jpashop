@@ -13,6 +13,7 @@ abstract class Item(
     @Column(name = "item_id")
     val id: Long = 0,
     val name: String,
+    val price: Int,
     var stockQuantity: Int,
 
     ) {

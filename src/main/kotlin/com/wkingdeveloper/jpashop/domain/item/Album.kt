@@ -1,6 +1,5 @@
 package com.wkingdeveloper.jpashop.domain.item
 
-import com.wkingdeveloper.jpashop.domain.Category
 import jakarta.persistence.Column
 import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
@@ -8,16 +7,12 @@ import jakarta.persistence.Entity
 @Entity
 @DiscriminatorValue("A")
 class Album(
-    id: Long,
+    id: Long = 0,
     name: String,
     stockQuantity: Int,
-    categories: List<Category>,
-    @Column(nullable = false)
+    price: Int,
+    @Column
     val artist: String,
-    @Column(nullable = false)
+    @Column
     val etc: String,
-) : Item(id, name, stockQuantity) {
-    init {
-        super.categories = categories
-    }
-}
+) : Item(id, name, price, stockQuantity)
