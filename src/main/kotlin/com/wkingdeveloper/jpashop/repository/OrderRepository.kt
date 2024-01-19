@@ -35,7 +35,7 @@ class OrderRepository(
             .resultList
     }
 
-    fun findAllByString(orderSearch: OrderSearch): List<Order?>? {
+    fun findAllByString(orderSearch: OrderSearch): List<Order> {
         //language=JPAQL
         var jpql = "select o From Order o join o.member m"
         var isFirstCondition = true

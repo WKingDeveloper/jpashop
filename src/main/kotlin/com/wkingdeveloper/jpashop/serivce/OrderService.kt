@@ -6,6 +6,7 @@ import com.wkingdeveloper.jpashop.domain.OrderItem
 import com.wkingdeveloper.jpashop.repository.ItemRepository
 import com.wkingdeveloper.jpashop.repository.MemberRepository
 import com.wkingdeveloper.jpashop.repository.OrderRepository
+import com.wkingdeveloper.jpashop.repository.OrderSearch
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -63,7 +64,7 @@ class OrderService(
 
 
     //검색
-//    fun findOrders(orderSearch : OrderSearch){
-//        return orderRepository.findAll(orderSearch)
-//    }
+    fun findOrders(orderSearch: OrderSearch): List<Order> {
+        return orderRepository.findAllByString(orderSearch)
+    }
 }
