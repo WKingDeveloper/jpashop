@@ -9,3 +9,5 @@ class JpashopApplication
 fun main(args: Array<String>) {
     runApplication<JpashopApplication>(*args)
 }
+
+

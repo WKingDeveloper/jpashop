@@ -24,9 +24,11 @@ class Order(
     ) {
 
     init {
-        member.orders.add(this)
-        delivery.order = this
-        orderItems.forEach { it.order = this }
+        if (id == 0L) {
+            member.orders.add(this)
+            delivery.order = this
+            orderItems.forEach { it.order = this }
+        }
     }
 
     val orderDate: LocalDateTime = LocalDateTime.now()

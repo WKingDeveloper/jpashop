@@ -23,6 +23,7 @@ repositories {
 
 dependencies {
 
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta")
     implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

@@ -1,5 +1,6 @@
 package com.wkingdeveloper.jpashop.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.wkingdeveloper.jpashop.domain.item.Item
 import jakarta.persistence.*
 
@@ -16,16 +17,19 @@ class OrderItem(
     val item: Item
 ) {
     init {
-        item.removeStock(count)
+        if (id == 0L) {
+            item.removeStock(count)
+        }
     }
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     lateinit var order: Order
 
     //==비즈니스 로직==//
     fun cancel() = item.addStock(count)
-    
+
     //==조회 로직==//
     fun getTotalPrice(): Int = orderPrice * count
 

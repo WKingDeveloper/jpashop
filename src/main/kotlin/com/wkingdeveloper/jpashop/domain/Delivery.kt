@@ -1,5 +1,6 @@
 package com.wkingdeveloper.jpashop.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 
 @Entity
@@ -13,6 +14,7 @@ class Delivery(
 
     ) {
 
+    @JsonIgnore
     @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     lateinit var order: Order
 
