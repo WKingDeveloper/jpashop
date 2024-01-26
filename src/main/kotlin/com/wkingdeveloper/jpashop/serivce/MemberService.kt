@@ -19,6 +19,13 @@ class MemberService(
         return member.id
     }
 
+    // 정보 수정
+    @Transactional
+    fun update(id: Long, name: String) {
+        val member = memberRepository.findOne(id)
+        member.name = name
+    }
+
     // 회원 전체 조회
     fun findMembers(): List<Member> {
         return memberRepository.findAll()
