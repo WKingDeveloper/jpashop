@@ -100,4 +100,28 @@ class OrderRepository(
         ).resultList
     }
 
+    fun findAllWithMemberDelivery(offset: Int, limit: Int): List<Order> {
+        return em.createQuery(
+            "select o from Order o" +
+                    " join fetch o.member m" +
+                    " join fetch o.delivery d", Order::class.java
+        ).setFirstResult(offset).setMaxResults(limit).resultList
+    }
+
+
+    /**
+     * hibernate 6.0부터는 distinct가 자동으로 적용되어 db 레벨에서는 중복된 데이터가 표시되나
+     * JPA에서는 중복된 데이터가 합쳐져서 보임 (뻥튀기가 되지 않음)
+     * https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#hql-distinct
+     */
+    fun findAllWithItem(): List<Order> {
+        return em.createQuery(
+            "select o from Order o " +
+                    "join fetch o.member m " +
+                    "join fetch o.delivery d " +
+                    "join fetch o.orderItems oi " +
+                    "join fetch oi.item i", Order::class.java
+        ).resultList
+    }
+
 }
