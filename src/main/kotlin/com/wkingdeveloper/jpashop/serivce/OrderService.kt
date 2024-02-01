@@ -25,7 +25,7 @@ class OrderService(
     fun order(memberId: Long, itemId: Long, count: Int): Long {
 
         // 엔티티 조회
-        val member = memberRepository.findOne(memberId)
+        val member = memberRepository.findById(memberId).get()
         val item = itemRepository.findOne(itemId)
 
         // 배송정보 생성
@@ -65,6 +65,6 @@ class OrderService(
 
     //검색
     fun findOrders(orderSearch: OrderSearch): List<Order> {
-        return orderRepository.findAllByString(orderSearch)
+        return orderRepository.findAll(orderSearch)
     }
 }

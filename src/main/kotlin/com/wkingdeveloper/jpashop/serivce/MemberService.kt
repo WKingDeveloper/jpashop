@@ -2,6 +2,7 @@ package com.wkingdeveloper.jpashop.serivce
 
 import com.wkingdeveloper.jpashop.domain.Member
 import com.wkingdeveloper.jpashop.repository.MemberRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -22,8 +23,8 @@ class MemberService(
     // 정보 수정
     @Transactional
     fun update(id: Long, name: String) {
-        val member = memberRepository.findOne(id)
-        member.name = name
+        val member = memberRepository.findByIdOrNull(id)
+        member?.let { it.name = name }
     }
 
     // 회원 전체 조회
@@ -33,7 +34,8 @@ class MemberService(
 
     // 회원 단건 조회
     fun findOne(memberId: Long): Member {
-        return memberRepository.findOne(memberId)
+
+        return memberRepository.findById(memberId).get()
     }
 
     private fun validateDuplicateMember(member: Member) {

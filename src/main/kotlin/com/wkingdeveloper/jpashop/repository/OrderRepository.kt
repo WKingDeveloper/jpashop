@@ -1,8 +1,9 @@
 package com.wkingdeveloper.jpashop.repository
 
-import com.wkingdeveloper.jpashop.domain.Member
+import com.querydsl.core.types.dsl.BooleanExpression
+import com.querydsl.jpa.impl.JPAQueryFactory
+import com.wkingdeveloper.jpashop.domain.*
 import com.wkingdeveloper.jpashop.domain.Order
-import com.wkingdeveloper.jpashop.domain.OrderState
 import jakarta.persistence.EntityManager
 import jakarta.persistence.TypedQuery
 import jakarta.persistence.criteria.*
@@ -23,16 +24,46 @@ class OrderRepository(
         return em.find(Order::class.java, id)
     }
 
+//    fun findAll(orderSearch: OrderSearch): List<Order> {
+//        return em.createQuery(
+//            "select o from Order o join o.member m"
+//                    + " where o.status = :status" +
+//                    " and m.name like :name",
+//            Order::class.java
+//        ).setParameter("status", orderSearch.orderStatus)
+//            .setParameter("name", orderSearch.memberName)
+//            .setMaxResults(1000)
+//            .resultList
+//    }
+
+    /**
+     * Todo : 강의 영상에서는 주문목록을 들어가고 검색을 안눌러도 자동으로 먼저 표시되는데 이유가 뭔지
+     */
     fun findAll(orderSearch: OrderSearch): List<Order> {
-        return em.createQuery(
-            "select o from Order o join o.member m"
-                    + " where o.status = :status" +
-                    " and m.name like :name",
-            Order::class.java
-        ).setParameter("status", orderSearch.orderStatus)
-            .setParameter("name", orderSearch.memberName)
-            .setMaxResults(1000)
-            .resultList
+        val order = QOrder.order
+        val member = QMember.member
+
+        val query = JPAQueryFactory(em)
+        return query.select(order)
+            .from(order)
+            .join(order.member, member)
+            .where(statusEq(orderSearch.orderStatus), nameLike(orderSearch.memberName))
+            .limit(1000)
+            .fetch()
+    }
+
+    private fun nameLike(memberName: String?): BooleanExpression? {
+        if (!StringUtils.hasText(memberName)) {
+            null
+        }
+        return QMember.member.name.like("%${memberName}%")
+    }
+
+    private fun statusEq(statusCond: OrderState?): BooleanExpression? {
+        if (statusCond == null) {
+            return null
+        }
+        return QOrder.order.status.eq(statusCond)
     }
 
     fun findAllByString(orderSearch: OrderSearch): List<Order> {

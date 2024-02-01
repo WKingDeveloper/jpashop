@@ -25,7 +25,7 @@ class MemberServiceTest @Autowired constructor(
         )
         val saveId = memberService.join(member)
         em.flush()
-        assertEquals(member, memberRepository.findOne(saveId))
+        assertEquals(member, memberRepository.findById(saveId).get())
     }
 
     @Test()
