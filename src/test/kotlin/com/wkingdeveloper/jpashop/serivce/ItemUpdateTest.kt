@@ -1,7 +1,7 @@
 package com.wkingdeveloper.jpashop.serivce
 
 import com.wkingdeveloper.jpashop.domain.item.Book
-import jakarta.persistence.EntityManager
+import javax.persistence.EntityManager
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

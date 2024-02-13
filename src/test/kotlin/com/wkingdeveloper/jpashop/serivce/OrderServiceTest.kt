@@ -7,7 +7,7 @@ import com.wkingdeveloper.jpashop.domain.item.Book
 import com.wkingdeveloper.jpashop.domain.item.Item
 import com.wkingdeveloper.jpashop.exception.NotEnoughStockException
 import com.wkingdeveloper.jpashop.repository.OrderRepository
-import jakarta.persistence.EntityManager
+import javax.persistence.EntityManager
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

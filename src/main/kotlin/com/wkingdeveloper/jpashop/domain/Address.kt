@@ -1,6 +1,6 @@
 package com.wkingdeveloper.jpashop.domain
 
-import jakarta.persistence.Embeddable
+import javax.persistence.Embeddable
 
 @Embeddable
 class Address(

@@ -4,6 +4,7 @@ import com.wkingdeveloper.jpashop.domain.Order
 import com.wkingdeveloper.jpashop.domain.OrderItem
 import com.wkingdeveloper.jpashop.repository.OrderRepository
 import com.wkingdeveloper.jpashop.repository.OrderSearch
+import com.wkingdeveloper.jpashop.repository.order.OrderDataJpaRepository
 import com.wkingdeveloper.jpashop.repository.order.query.OrderItemQueryDto
 import com.wkingdeveloper.jpashop.repository.order.query.OrderQueryDto
 import com.wkingdeveloper.jpashop.repository.order.query.OrderQueryRepository
@@ -14,24 +15,26 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class OrderApiController(
     private val orderRepository: OrderRepository,
-    private val orderQueryRepository: OrderQueryRepository
+    private val orderQueryRepository: OrderQueryRepository,
+    private val orderDataJpaRepository: OrderDataJpaRepository
 ) {
 
     @GetMapping("/api/v1/orders")
     fun ordersV1(): List<Order> {
         val all = orderRepository.findAllByString(OrderSearch())
-        all.forEach {
-            it.member.name
-            it.delivery.status
-            val orderItems = it.orderItems
-            orderItems.forEach { item -> item.item.name }
-        }
+//        all.forEach {
+//            it.member.name
+//            it.delivery.status
+//            val orderItems = it.orderItems
+//            orderItems.forEach { item -> item.item.name }
+//        }
         return all
     }
 
     @GetMapping("/api/v2/orders")
     fun ordersV2(): List<OrderDto> {
-        val orders = orderRepository.findAllByString(OrderSearch())
+//        val orders = orderRepository.findAllByString(OrderSearch())
+        val orders = orderDataJpaRepository.findAll()
         return orders.map { OrderDto(it) }
     }
 
@@ -84,11 +87,11 @@ class OrderApiController(
         order: Order
     ) {
         val orderId = order.id
-        val name = order.member.name
         val orderDate = order.orderDate
         val orderStatus = order.status
+//        val name = order.member.name
         val address = order.delivery.address
-        val orderItems = order.orderItems.map { OrderItemDto(it) }
+//        val orderItems = order.orderItems.map { OrderItemDto(it) }
     }
 
     class OrderItemDto(

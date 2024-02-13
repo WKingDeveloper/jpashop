@@ -2,7 +2,7 @@ package com.wkingdeveloper.jpashop.serivce
 
 import com.wkingdeveloper.jpashop.domain.Member
 import com.wkingdeveloper.jpashop.repository.MemberRepository
-import jakarta.persistence.EntityManager
+import javax.persistence.EntityManager
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

@@ -1,7 +1,7 @@
 package com.wkingdeveloper.jpashop.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import jakarta.persistence.*
+import javax.persistence.*
 
 @Entity
 class Member(

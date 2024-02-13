@@ -2,7 +2,7 @@ package com.wkingdeveloper.jpashop
 
 import com.wkingdeveloper.jpashop.domain.*
 import com.wkingdeveloper.jpashop.domain.item.Book
-import jakarta.persistence.EntityManager
+import javax.persistence.EntityManager
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 

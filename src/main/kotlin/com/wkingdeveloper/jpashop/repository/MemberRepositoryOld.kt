@@ -1,7 +1,7 @@
 package com.wkingdeveloper.jpashop.repository
 
 import com.wkingdeveloper.jpashop.domain.Member
-import jakarta.persistence.EntityManager
+import javax.persistence.EntityManager
 import org.springframework.stereotype.Repository
 
 @Repository

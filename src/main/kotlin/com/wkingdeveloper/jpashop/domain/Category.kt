@@ -1,7 +1,7 @@
 package com.wkingdeveloper.jpashop.domain
 
 import com.wkingdeveloper.jpashop.domain.item.Item
-import jakarta.persistence.*
+import javax.persistence.*
 
 @Entity
 class Category(

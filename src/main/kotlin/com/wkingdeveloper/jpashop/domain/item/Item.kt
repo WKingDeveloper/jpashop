@@ -2,7 +2,7 @@ package com.wkingdeveloper.jpashop.domain.item
 
 import com.wkingdeveloper.jpashop.domain.Category
 import com.wkingdeveloper.jpashop.exception.NotEnoughStockException
-import jakarta.persistence.*
+import javax.persistence.*
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

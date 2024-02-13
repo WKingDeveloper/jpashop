@@ -1,6 +1,6 @@
 package com.wkingdeveloper.jpashop.controller
 
-import jakarta.validation.constraints.NotEmpty
+import javax.validation.constraints.NotEmpty
 
 class MemberForm(
 ) {

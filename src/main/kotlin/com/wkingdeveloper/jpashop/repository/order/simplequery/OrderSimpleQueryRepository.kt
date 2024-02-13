@@ -1,6 +1,6 @@
 package com.wkingdeveloper.jpashop.repository.order.simplequery
 
-import jakarta.persistence.EntityManager
+import javax.persistence.EntityManager
 import org.springframework.stereotype.Repository
 
 @Repository

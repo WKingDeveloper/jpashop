@@ -1,6 +1,6 @@
 package com.wkingdeveloper.jpashop.domain
 
-import jakarta.persistence.*
+import javax.persistence.*
 import java.time.LocalDateTime
 
 @Entity

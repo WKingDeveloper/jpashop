@@ -2,7 +2,7 @@ package com.wkingdeveloper.jpashop.api
 
 import com.wkingdeveloper.jpashop.domain.Member
 import com.wkingdeveloper.jpashop.serivce.MemberService
-import jakarta.validation.Valid
+import javax.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
