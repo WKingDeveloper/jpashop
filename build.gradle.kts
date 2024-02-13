@@ -26,7 +26,7 @@ repositories {
 dependencies {
 
 //    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter")
-
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-validation")
